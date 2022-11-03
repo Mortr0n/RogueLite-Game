@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform targetDestination;
     GameObject targetGameObject;
     [SerializeField] float speed;
+    [SerializeField] float hitPoints = 4;
 
     Rigidbody2D rgbd2d;
 
@@ -34,5 +35,16 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         Debug.Log("Attacking the character!");
+    }
+
+    public void TakeDamage(float damage)
+    {
+        hitPoints -= damage;
+        Debug.Log(hitPoints);
+
+        if(hitPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
