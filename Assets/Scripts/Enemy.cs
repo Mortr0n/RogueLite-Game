@@ -7,8 +7,11 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] Transform targetDestination;
     GameObject targetGameObject;
+    Character targetCharacter;
+
     [SerializeField] float speed;
     [SerializeField] float hitPoints = 4;
+    [SerializeField] float damage = 1;
 
     Rigidbody2D rgbd2d;
 
@@ -34,7 +37,11 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("Attacking the character!");
+        if(targetCharacter == null)
+        {
+            targetCharacter = targetGameObject.GetComponent<Character>();
+        }
+        targetCharacter.TakeDamage(damage);
     }
 
     public void TakeDamage(float damage)
